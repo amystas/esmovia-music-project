@@ -1,5 +1,3 @@
-## MUSIC!
-------
 # Collaborators:
 - Amelia Staszczyk (Captain)
 - Stanisław Maik
