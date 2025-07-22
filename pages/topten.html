@@ -1,29 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="ptistyle.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-
+    <main>
+        <div id="articles"></div>
+    </main>
     <script>
     function get_artists()
     {
         fetch('https://mocki.io/v1/a07e9e21-d81d-4b59-beac-a975ac9f2192')
         .then(response => response.json())
         .then(json => {
-            data = JSON.stringify(json)
+
+            let data = Array.isArray(json) ? json : Object.values(json);
+            //console.log(data);
+            //console.log(typeof data);
+            const root = document.getElementById('articles');
+            let arr_len = data.length;
+            for (let i = 0; i < arr_len; i++) {
+
+            const artist = data[i];
+
+            // <article>
+            let row = document.createElement('article');
+            row.className = 'artist';
+            row.dataset.index = i;
+
+            // Nagłówek z imieniem/nazwiskiem
+            let h2 = document.createElement('h2');
+            h2.textContent = artist.name ?? 'Nieznany artysta';
+            row.appendChild(h2);
+
+            // Wiek (tylko jeśli dostępny)
+            if (artist.age !== null && artist.age !== undefined) {
+                let ageP = document.createElement('p');
+                ageP.className = 'age';
+                ageP.textContent = `Wiek: ${artist.age}`;
+                row.appendChild(ageP);
+            }
+
+            // Najbardziej znany utwór
+            let songP = document.createElement('p');
+            songP.className = 'song';
+            songP.textContent = `Najbardziej znany utwór: ${artist.most_popular_song ?? 'brak danych'}`;
+            row.appendChild(songP);
+
+            // Dodaj do kontenera
+            root.appendChild(row);
+            }
+
+
         });
 
-        if(typeof data !== "string")
-        {
-            return 0;
-        }
-        document.writeln(data);
+        
         return 0;
     }
-    
+    get_artists();    
     </script>
 
 
