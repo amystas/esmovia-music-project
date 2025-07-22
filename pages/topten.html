@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+    function get_artists()
+    {
+        fetch('https://mocki.io/v1/a07e9e21-d81d-4b59-beac-a975ac9f2192')
+        .then(response => response.json())
+        .then(json => {
+            data = JSON.stringify(json)
+        });
+
+        if(typeof data !== "string")
+        {
+            return 0;
+        }
+        document.writeln(data);
+        return 0;
+    }
+    
+    </script>
+
+
+</body>
+</html>
