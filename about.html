@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+    <title>About Us</title>
+    <style>
+        body {
+            background-color: #181a1b !important;
+            color: #e0e0e0 !important;
+        }
+        .bg-dark, .navbar, .card.bg-dark, .card.bg-secondary, .card-body, .container {
+            background-color: #181a1b !important;
+        }
+        .card.bg-secondary {
+            background-color: #23272b !important;
+        }
+        .card, .card-body {
+            border-color: #343a40 !important;
+        }
+        .text-secondary {
+            color: #b0b3b8 !important;
+        }
+        .blockquote-footer {
+            color: #b0b3b8 !important;
+        }
+        .nav-link, .navbar-brand {
+            color: #e0e0e0 !important;
+        }
+        .nav-link.active, .nav-link:focus, .nav-link:hover {
+            color: #00bfff !important;
+        }
+        .btn-primary.custom-btn {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #fff;
+            transition: background 0.2s, border 0.2s;
+        }
+        .btn-primary.custom-btn:hover,
+        .btn-primary.custom-btn:focus {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="bg-dark text-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <a class="navbar-brand font-weight-bold" href="#">🎵 Pinguinos Music</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-3">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container">
+        <section class="mb-5">
+            <h1 class="display-4 mb-3">Our team</h1>
+            <img src="us.jpg" alt="Banner" class="img-fluid rounded mb-4" style="max-height:220px;">
+            <h2 class="h4 text-secondary mb-4">We’re building the future of music communities.</h2>
+            <div class="card bg-secondary text-light mb-4">
+                <div class="card-body">
+                    <p class="lead mb-0">
+                        Pinguinos Music is on a mission to empower music lovers, artists, and creators to connect, collaborate, and grow together. We believe in the power of community and technology to unlock new opportunities for everyone passionate about music.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="mb-5">
+            <h3 class="mb-3">Our Values</h3>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="card bg-dark border-secondary h-100">
+                        <div class="card-body">
+                            <strong>Community First:</strong> Everything we do starts with our users and their needs.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card bg-dark border-secondary h-100">
+                        <div class="card-body">
+                            <strong>Creativity:</strong> We celebrate originality and encourage new ideas.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card bg-dark border-secondary h-100">
+                        <div class="card-body">
+                            <strong>Transparency:</strong> We build trust through openness and honesty.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card bg-dark border-secondary h-100">
+                        <div class="card-body">
+                            <strong>Empowerment:</strong> We give people the tools and support to achieve more.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mb-5">
+            <h3 class="mb-3">Why Pinguinos Music?</h3>
+            <div class="card bg-secondary text-light">
+                <div class="card-body">
+                    We’re passionate about making music discovery and collaboration accessible to all. Whether you’re an artist looking to share your work or a fan searching for your next favorite track, Pinguinos Music is here to help you connect and thrive.
+                </div>
+            </div>
+        </section>
+        <section class="my-5">
+            <h3 class="mb-3">Contact Us</h3>
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control bg-dark text-light border-secondary" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control bg-dark text-light border-secondary" id="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control bg-dark text-light border-secondary" id="message" rows="4" placeholder="Type your message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary custom-btn">Send</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
