@@ -45,6 +45,24 @@
             border-color: #0056b3;
             color: #fff;
         }
+        .banner-box {
+            background-color: #23272b;
+            border: 2px solid #343a40;
+            border-radius: 1rem;
+            text-align: center;
+            padding: 1.5rem 1rem 1rem 1rem;
+            margin-bottom: 2rem;
+        }
+        .banner-box img {
+            max-height: 320px;
+        }
+        
+        #toast-container {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 9999;
+        }
     </style>
 </head>
 <body class="bg-dark text-light">
@@ -63,7 +81,9 @@
     <main class="container">
         <section class="mb-5">
             <h1 class="display-4 mb-3">Our team</h1>
-            <img src="us.jpg" alt="Banner" class="img-fluid rounded mb-4" style="max-height:220px;">
+            <div class="banner-box">
+                <img src="us.jpg" alt="Banner" class="img-fluid rounded">
+            </div>
             <h2 class="h4 text-secondary mb-4">We’re building the future of music communities.</h2>
             <div class="card bg-secondary text-light mb-4">
                 <div class="card-body">
@@ -116,21 +136,47 @@
         </section>
         <section class="my-5">
             <h3 class="mb-3">Contact Us</h3>
-            <form>
+            <form id="contactForm" onsubmit="return validateAndSend();">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control bg-dark text-light border-secondary" id="name" placeholder="Enter your name">
+                    <input 
+                        type="text" 
+                        class="form-control bg-dark text-light border-secondary" 
+                        id="name" 
+                        placeholder="Enter your name"
+                        required
+                        minlength="2"
+                        maxlength="40"
+                        pattern="^[A-Za-zÀ-ÿ '-]{2,40}$"
+                    >
                 </div>
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input type="email" class="form-control bg-dark text-light border-secondary" id="email" placeholder="Enter your email">
+                    <input 
+                        type="email" 
+                        class="form-control bg-dark text-light border-secondary" 
+                        id="email" 
+                        placeholder="Enter your email"
+                        required
+                        maxlength="60"
+                        pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                    >
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea class="form-control bg-dark text-light border-secondary" id="message" rows="4" placeholder="Type your message"></textarea>
+                    <textarea 
+                        class="form-control bg-dark text-light border-secondary" 
+                        id="message" 
+                        rows="4" 
+                        placeholder="Type your message"
+                        required
+                        minlength="10"
+                        maxlength="500"
+                    ></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary custom-btn">Send</button>
             </form>
+            <div id="toast-container"></div>
         </section>
     </main>
     <footer class="text-white mt-3 py-3" style="background-color: #2d2d2d;">
@@ -170,5 +216,93 @@
             </div>
         </div>
     </footer>
+       <script>
+    function validateAndSend() {
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const message = document.getElementById('message');
+
+        // JS validation
+        if (
+            !name.value.match(/^[A-Za-zÀ-ÿ '-]{2,40}$/) ||
+            !email.value.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/) ||
+            message.value.length < 10 ||
+            message.value.length > 500
+        ) {
+            showToast('Please fill out the form correctly.', 'danger');
+            return false;
+        }
+
+        showToast('Email sent!', 'success');
+        return false;
+    }
+
+    function showToast(message, type) {
+        // remove toasts
+        const container = document.getElementById('toast-container');
+        container.innerHTML = '';
+        // toast
+        const toast = document.createElement('div');
+        toast.className = `toast show custom-toast text-white`;
+        toast.setAttribute('role', 'alert');
+        toast.setAttribute('aria-live', 'assertive');
+        toast.setAttribute('aria-atomic', 'true');
+        toast.style.minWidth = '200px';
+        toast.style.fontSize = '1rem';
+        toast.innerHTML = `
+            <div class="toast-body">
+                ${message}
+            </div>
+        `;
+        container.appendChild(toast);
+        setTimeout(() => {
+            toast.classList.add('plop-out');
+            setTimeout(() => {
+                toast.classList.remove('show');
+                toast.classList.add('hide');
+            }, 350);
+        }, 2500);
+    }
+    </script>
+    <style>
+    .custom-toast {
+        background-color: #007bff !important;
+        border: none;
+        box-shadow: 0 4px 16px 0 rgba(0,123,255,0.15);
+        transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55), opacity 0.3s;
+        animation: toast-in 0.4s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    .custom-toast.plop-out {
+        animation: plop 0.35s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    @keyframes toast-in {
+        0% {
+            transform: translateX(120%) scale(0.9);
+            opacity: 0.2;
+        }
+        60% {
+            transform: translateX(-10%) scale(1.05);
+            opacity: 1;
+        }
+        100% {
+            transform: translateX(0) scale(1);
+            opacity: 1;
+        }
+    }
+    @keyframes plop {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        60% {
+            transform: scale(1.15);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(0.7);
+            opacity: 0;
+        }
+    }
+    </style>
 </body>
 </html>
