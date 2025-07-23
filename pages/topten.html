@@ -128,21 +128,21 @@
 
             // Nagłówek z imieniem/nazwiskiem
             let h2 = document.createElement('h2');
-            h2.textContent = artist.name ?? 'Nieznany artysta';
+            h2.textContent = artist.name ?? 'Unknown artist';
             row.appendChild(h2);
 
             // Wiek (tylko jeśli dostępny)
             if (artist.age !== null && artist.age !== undefined) {
                 let ageP = document.createElement('p');
                 ageP.className = 'age';
-                ageP.textContent = `Wiek: ${artist.age}`;
+                ageP.textContent = `Age: ${artist.age}`;
                 row.appendChild(ageP);
             }
 
             // Najbardziej znany utwór
             let songP = document.createElement('p');
             songP.className = 'song';
-            songP.textContent = `Najbardziej znany utwór: ${artist.most_popular_song ?? 'brak danych'}`;
+            songP.textContent = `The most famous song: ${artist.most_popular_song ?? 'brak danych'}`;
             row.appendChild(songP);
 
             // Dodaj do kontenera
